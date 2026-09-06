@@ -10,11 +10,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "cviebrock/eloquent-sluggable": "^13.0",
+        "dompdf/dompdf": "^3.1",
+        "laravel/cashier": "^16.7",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",
         "livewire/flux": "^2.16",
         "livewire/livewire": "^4.4",
-        "nativephp/mobile": "~4.0.0"
+        "nativephp/mobile": "~4.0.0",
+        "spatie/laravel-medialibrary": "^11.23",
+        "spatie/laravel-permission": "^8.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

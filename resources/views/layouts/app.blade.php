@@ -10,14 +10,22 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @fluxAppearance
         @livewireStyles
+        <style>
+            .ql-editor {
+                height: 300px;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
+
+        
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -36,5 +44,8 @@
         </div>
         @livewireScripts
         @fluxScripts
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+        <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     </body>
 </html>

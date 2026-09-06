@@ -1,0 +1,72 @@
+<x-app-layout>
+
+    @include('sidebar.side')
+
+    <flux:main>
+
+        <flux:heading size="xl" level="1">
+            All Subscribers
+        </flux:heading>
+
+        <flux:separator variant="subtle" class="mb-6" />
+
+        <flux:table>
+
+            <flux:table.columns>
+                <flux:table.column>ID</flux:table.column>
+                <flux:table.column>Name</flux:table.column>
+                <flux:table.column>Email</flux:table.column>
+                <flux:table.column>Plan</flux:table.column>
+                <flux:table.column>Status</flux:table.column>
+                <flux:table.column>Started At</flux:table.column>
+                <flux:table.column>Ends At</flux:table.column>
+               
+            </flux:table.columns>
+
+            <flux:table.rows>
+
+                @foreach($subscribers as $subscriber)
+
+                    @php
+                        $subscription = $subscriber->subscription('default');
+                    @endphp
+
+                    <flux:table.row>
+
+                        <flux:table.cell>{{ $subscriber->id }}</flux:table.cell>
+
+                        <flux:table.cell>{{ $subscriber->name }}</flux:table.cell>
+
+                        <flux:table.cell>{{ $subscriber->email }}</flux:table.cell>
+
+                        <flux:table.cell>
+                            {{ $subscriber->plan?->name ?? 'N/A' }}
+                        </flux:table.cell>
+
+                        <flux:table.cell>
+                            {{ ucfirst($subscription?->stripe_status ?? 'N/A') }}
+                        </flux:table.cell>
+
+                        <flux:table.cell>
+                            {{ optional($subscription)->created_at?->format('d M Y H:i:s') ?? 'N/A' }}
+                        </flux:table.cell>
+
+                        <flux:table.cell>
+                            {{ optional($subscription)->ends_at?->format('d M Y H:i:s') ?? 'Active' }}
+                        </flux:table.cell>
+
+                    </flux:table.row>
+
+                @endforeach
+
+            </flux:table.rows>
+
+        </flux:table>
+
+        <div class="mt-6">
+            {{ $subscribers->links() }}
+        </div>
+
+    </flux:main>
+
+</x-app-layout>

@@ -1,17 +1,35 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+ 
+    @include('sidebar.side')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <flux:header class="lg:hidden">
+        <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+
+        <flux:spacer />
+
+        <flux:dropdown position="top" alignt="start">
+            <flux:profile name="{{ Auth::user()->name }}"  />
+
+            <flux:menu>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <flux:menu.item icon="arrow-right-start-on-rectangle" :href="route('logout')"
+                        onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </flux:menu.item>
+                </form>
+            </flux:menu>
+        </flux:dropdown>
+    </flux:header>
+
+    <flux:main>
+        <flux:heading size="xl" level="1">
+            {{ Auth::user()->name }}
+        </flux:heading>
+
+        
+        <flux:separator variant="subtle" />
+    </flux:main>
+ 
 </x-app-layout>
